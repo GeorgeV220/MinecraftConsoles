@@ -278,16 +278,10 @@ void AnvilMenu::createResult()
 			if (DEBUG_COST) app.DebugPrintf("No purchase, only tax; aborting");
 			result = nullptr;
 		}
-		if (namingCost == price && namingCost > 0 && cost >= 40)
+		if (cost > 30 && !player->abilities.instabuild)
 		{
-			if (DEBUG_COST) app.DebugPrintf("Cost is too high; aborting");
-			app.DebugPrintf("Naming an item only, cost too high; giving discount to cap cost to 39 levels");
-			cost = 39;
-		}
-		if (cost >= 40 && !player->abilities.instabuild)
-		{
-			if (DEBUG_COST) app.DebugPrintf("Cost is too high; aborting");
-			result = nullptr;
+			if (DEBUG_COST) app.DebugPrintf("Cost capped to 30 levels (was %d)", cost);
+			cost = 30;
 		}
 
 		if (result != nullptr)
