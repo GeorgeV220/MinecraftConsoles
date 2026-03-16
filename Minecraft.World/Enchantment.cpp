@@ -3,6 +3,8 @@
 #include "net.minecraft.world.item.h"
 #include "Enchantment.h"
 
+#include "MendingEnchantment.h"
+
 //Enchantment *Enchantment::enchantments[256];
 EnchantmentArray Enchantment::enchantments = EnchantmentArray( 256 );
 vector<Enchantment *> Enchantment::validEnchantments;
@@ -35,6 +37,7 @@ Enchantment *Enchantment::arrowBonus = nullptr;
 Enchantment *Enchantment::arrowKnockback = nullptr;
 Enchantment *Enchantment::arrowFire = nullptr;
 Enchantment *Enchantment::arrowInfinite = nullptr;
+Enchantment *Enchantment::mending = nullptr;
 
 void Enchantment::staticCtor()
 {
@@ -66,6 +69,8 @@ void Enchantment::staticCtor()
 	arrowKnockback = new ArrowKnockbackEnchantment(49, FREQ_RARE);
 	arrowFire = new ArrowFireEnchantment(50, FREQ_RARE);
 	arrowInfinite = new ArrowInfiniteEnchantment(51, FREQ_VERY_RARE);
+    
+    mending = new MendingEnchantment(100, FREQ_VERY_RARE);
 
 	for(unsigned int i = 0; i < 256; ++i)
 	{

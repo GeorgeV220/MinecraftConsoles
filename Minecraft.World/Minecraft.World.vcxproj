@@ -2491,6 +2491,7 @@
     <ClInclude Include="LeashItem.h" />
     <ClInclude Include="MapCloningRecipe.h" />
     <ClInclude Include="MapExtendingRecipe.h" />
+    <ClInclude Include="MendingEnchantment.h" />
     <ClInclude Include="MinecartChest.h" />
     <ClInclude Include="MinecartContainer.h" />
     <ClInclude Include="MinecartFurnace.h" />
@@ -3557,6 +3558,7 @@
     <ClCompile Include="HtmlString.cpp" />
     <ClCompile Include="LargeFireball.cpp" />
     <ClCompile Include="LeashItem.cpp" />
+    <ClCompile Include="MendingEnchantment.cpp" />
     <ClCompile Include="MinecartChest.cpp" />
     <ClCompile Include="MinecartContainer.cpp" />
     <ClCompile Include="MinecartFurnace.cpp" />

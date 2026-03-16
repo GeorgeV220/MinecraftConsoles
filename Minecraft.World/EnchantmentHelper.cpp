@@ -239,6 +239,34 @@ int EnchantmentHelper::getArmorThorns(shared_ptr<LivingEntity> source)
 	return getEnchantmentLevel(Enchantment::thorns->id, source->getEquipmentSlots());
 }
 
+int EnchantmentHelper::repairItemWithMending(shared_ptr<ItemInstance> &item, int &xp) {
+    if (!item || !item->isEnchanted() || !item->isDamageableItem() || !item->isDamaged())
+        return 0;
+
+    ListTag<CompoundTag> *enchantments = item->getEnchantmentTags();
+    if (!enchantments)
+        return 0;
+
+    bool hasMending = false;
+    for (int j = 0; j < enchantments->size(); ++j) {
+        if (enchantments->get(j)->getShort(L"id") == 100) {
+            hasMending = true;
+            break;
+        }
+    }
+    if (!hasMending)
+        return 0;
+
+    int repairAmount = xp * 2;
+    int currentDamage = item->getDamageValue();
+    int newDamage = (currentDamage - repairAmount > 0) ? (currentDamage - repairAmount) : 0;
+    item->setAuxValue(newDamage);
+
+    int xpUsed = (xp < (currentDamage - newDamage + 1)/2) ? xp : (currentDamage - newDamage + 1)/2;
+    xp -= xpUsed;
+    return xpUsed;
+}
+
 shared_ptr<ItemInstance> EnchantmentHelper::getRandomItemWith(Enchantment *enchantment, shared_ptr<LivingEntity> source)
 {
 	ItemInstanceArray items = source->getEquipmentSlots();

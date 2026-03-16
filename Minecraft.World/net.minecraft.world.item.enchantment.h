@@ -22,3 +22,5 @@
 #include "ArrowKnockbackEnchantment.h"
 
 #include "ThornsEnchantment.h"
+
+#include "MendingEnchantment.h"

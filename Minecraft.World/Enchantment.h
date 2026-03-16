@@ -46,6 +46,7 @@ public :
 	static Enchantment *arrowKnockback;
 	static Enchantment *arrowFire;
 	static Enchantment *arrowInfinite;
+    static Enchantment *mending;
 
 	const int id;
 

@@ -2382,6 +2382,19 @@ shared_ptr<ItemInstance> Player::getArmor(int pos)
 
 void Player::increaseXp(int i)
 {
+    if (i <= 0) return;
+
+    shared_ptr<ItemInstance> selectedItem = getSelectedItem();
+    if (selectedItem) {
+        EnchantmentHelper::repairItemWithMending(selectedItem, i);
+
+        if (i > 0) {
+            for (int armorSlot = 0; armorSlot < 4 && i > 0; ++armorSlot) {
+                shared_ptr<ItemInstance> armorItem = getArmor(armorSlot);
+                EnchantmentHelper::repairItemWithMending(armorItem, i);
+            }
+        }
+    }
 	increaseScore(i);
 	int max = INT_MAX - totalExperience;
 	if (i > max)
